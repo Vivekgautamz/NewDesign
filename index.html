@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-veil"></div>
+
+    <header class="page-header">
+        <div class="brand-mark">Client Intelligence</div>
+        <div class="header-meta">
+            <span class="pill">Live workspace</span>
+            <span class="pill soft">Autosave ready</span>
+        </div>
+    </header>
+
+    <button id="left-panel-toggle" class="panel-fab" type="button" aria-controls="left-panel" aria-expanded="true">Hide Panel</button>
+    <div id="panel-backdrop" class="panel-backdrop" aria-hidden="true"></div>
+
+    <div class="dashboard">
+        <div id="left-panel" class="left-panel card">
+            <div class="client-controls">
+                <button id="save-client">Save Client</button>
+                <select id="load-client">
+                    <option value="">Load Client</option>
+                </select>
+                <button id="new-client">New Client</button>
+            </div>
+
+            <div class="identity-card">
+                <p class="eyebrow">Engagement</p>
+                <h1>CLIENT: <span contenteditable="true" class="editable client-name-display" data-placeholder="CLIENT NAME">Crimson.com</span></h1>
+                <div class="swatches"></div>
+            </div>
+
+            <div class="logo-info">
+                <div class="logo-section">
+                    <span class="label">Logo Upload</span>
+                    <span class="hint">PNG / SVG / JPG</span>
+                </div>
+                <div id="client-logo" class="logo-placeholder">Drop logo or click to upload</div>
+                <input type="file" id="logo-upload" accept="image/*">
+            </div>
+
+            <section class="brand-colors card-lite">
+                <header class="section-head">
+                    <h2>Brand Colors</h2>
+                    <span class="inline-pill">Realtime theming</span>
+                </header>
+                <div class="color-grid">
+                    <div class="color-item">
+                        <label>Primary</label>
+                        <input type="color" value="#0f766e" id="primary-color">
+                        <span id="primary-code">#0f766e</span>
+                    </div>
+                    <div class="color-item">
+                        <label>Secondary</label>
+                        <input type="color" value="#0f172a" id="secondary-color">
+                        <span id="secondary-code">#0f172a</span>
+                    </div>
+                    <div class="color-item">
+                        <label>Accent</label>
+                        <input type="color" value="#f59e0b" id="accent-color">
+                        <span id="accent-code">#f59e0b</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="client-notes card-lite">
+                <header class="section-head">
+                    <h2>Client Notes</h2>
+                    <div class="notes-controls">
+                        <button id="edit-notes" class="ghost">Edit</button>
+                        <button id="save-notes" class="ghost">Lock</button>
+                        <button id="delete-notes" class="ghost danger">Clear</button>
+                    </div>
+                </header>
+                <textarea id="notes-area" placeholder="Client prefers minimalist design with emphasis on mobile experience. Launch date target: Oct 26, 2024"></textarea>
+            </section>
+
+            <section class="document-upload card-lite">
+                <header class="section-head">
+                    <h2>Assets & Docs</h2>
+                    <span class="hint">Drag in files or browse</span>
+                </header>
+                <div class="search-box">
+                    <input type="text" placeholder="Search files...">
+                </div>
+                <label class="upload-tile">
+                    <input type="file" id="doc-upload" multiple>
+                    <div class="upload-cta">
+                        <p>Upload documents</p>
+                        <small>PDF, DOCX, ZIP up to 25MB</small>
+                    </div>
+                </label>
+                <div id="uploaded-files" class="uploaded-list"></div>
+                <div class="upload-progress">
+                    <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+                    <span class="progress-text">60% COMPLETE</span>
+                </div>
+            </section>
+
+            <section class="project-checklist card-lite">
+                <header class="section-head">
+                    <h2>Production Checklist</h2>
+                    <button id="add-checklist-item" class="ghost">+ Item</button>
+                </header>
+                <ul id="checklist-initial">
+                    <li><label><input type="checkbox" checked><span class="checklist-text" contenteditable="false">Install WordPress</span></label><button class="checklist-menu">...</button><div class="checklist-dropdown" style="display:none;"><button class="edit-item">Edit</button><button class="delete-item">Delete</button><button class="insert-item">Insert Below</button></div></li>
+                    <li><label><input type="checkbox" checked><span class="checklist-text" contenteditable="false">Choose Theme</span></label><button class="checklist-menu">...</button><div class="checklist-dropdown" style="display:none;"><button class="edit-item">Edit</button><button class="delete-item">Delete</button><button class="insert-item">Insert Below</button></div></li>
+                    <li><label><input type="checkbox"><span class="checklist-text" contenteditable="false">Customize Header</span></label><button class="checklist-menu">...</button><div class="checklist-dropdown" style="display:none;"><button class="edit-item">Edit</button><button class="delete-item">Delete</button><button class="insert-item">Insert Below</button></div></li>
+                    <li><label><input type="checkbox" checked><span class="checklist-text" contenteditable="false">Develop Custom Post Types</span></label><button class="checklist-menu">...</button><div class="checklist-dropdown" style="display:none;"><button class="edit-item">Edit</button><button class="delete-item">Delete</button><button class="insert-item">Insert Below</button></div></li>
+                    <li><label><input type="checkbox"><span class="checklist-text" contenteditable="false">Content Migration</span></label><button class="checklist-menu">...</button><div class="checklist-dropdown" style="display:none;"><button class="edit-item">Edit</button><button class="delete-item">Delete</button><button class="insert-item">Insert Below</button></div></li>
+                    <li><label><input type="checkbox" checked><span class="checklist-text" contenteditable="false">QA & Launch</span></label><button class="checklist-menu">...</button><div class="checklist-dropdown" style="display:none;"><button class="edit-item">Edit</button><button class="delete-item">Delete</button><button class="insert-item">Insert Below</button></div></li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="right-panel card">
+            <div class="preview-header">
+                <div>
+                    <p class="eyebrow">Experience Preview</p>
+                    <h2>Home Page Preview</h2>
+                </div>
+                <div class="preview-badges">
+                    <span class="pill">Embed aware</span>
+                    <span class="pill soft">Device toggles</span>
+                </div>
+            </div>
+
+            <div class="preview-controls">
+                <input type="text" id="preview-url" placeholder="https://example.com">
+                <button id="load-preview">Load</button>
+            </div>
+            <p class="preview-info">Enter a URL and click load to preview a site.</p>
+
+            <div class="device-buttons">
+                <button id="mobile-btn">Mobile</button>
+                <button id="tablet-btn">Tablet</button>
+                <button id="desktop-btn" class="active">Desktop</button>
+            </div>
+
+            <div class="preview-container">
+                <div class="iframe-wrapper" id="iframe-wrapper">
+                    <iframe id="preview-frame" src="about:blank" class="desktop-view"></iframe>
+                    <div id="iframe-error">
+                        This site cannot be previewed here.<br>Some websites block embedding for security reasons.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
